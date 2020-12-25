@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "postcss src/tailwind.css -o src/index.css & nodemon",
-    "prod": "webpack -- --env mode=production",
+    "prod": "postcss src/tailwind.css -o src/index.css & webpack --env mode=production",
     "lint": "eslint \"src/**/*.{js, jsx}\" --quiet",
     "format": "prettier \"src/**/*.{js, html}\" --write"
   },
