@@ -15,7 +15,7 @@ const App = () => {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Route path="/Home">
+        <Route path="/">
           <HomePage theme={theme} />
         </Route>
         <Route path="/About">
