@@ -6,6 +6,7 @@ import HomePage from './Components/HomePage';
 import About from './Components/About';
 import Gallery from './Components/Gallery';
 import { BrowserRouter, Route } from 'react-router-dom';
+import './index.css';
 
 const App = () => {
   const [useDarkTheme, setUseDarkTheme] = useState(false);
@@ -15,14 +16,14 @@ const App = () => {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Route path="/">
-          <HomePage theme={theme} />
-        </Route>
         <Route path="/About">
           <About theme={theme} />
         </Route>
         <Route path="/Gallery">
           <Gallery theme={theme} />
+        </Route>
+        <Route exact path="/">
+          <HomePage theme={theme} />
         </Route>
         <button onClick={() => setUseDarkTheme(!useDarkTheme)}>
           Use darkTheme

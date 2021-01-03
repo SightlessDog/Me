@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { bodyFont, typeScale } from "../utils";
-import { PrimaryButton, SecondaryButton } from "./Buttons";
-import NavBar from "./NavBar";
-import Wrapper from "./Wrapper";
-import image from "../assets/pictures/myImage.jpg";
-import { useSpring, animated } from "react-spring";
+import React from 'react';
+import styled from 'styled-components';
+import { bodyFont, typeScale } from '../utils';
+import { PrimaryButton, SecondaryButton } from './Buttons';
+import NavBar from './NavBar';
+import Wrapper from './Wrapper';
+import image from '../assets/pictures/myImage.jpg';
+import { useSpring, animated } from 'react-spring';
 
 const BodyText = styled(animated.div)`
   -moz-transition: all 0.2s ease-in;
@@ -23,12 +23,20 @@ const HomeDiv = styled(animated.div)`
   background-image: url(${image});
   background-repeat: no-repeat;
   background-position: center;
-  height: 100%;
-  width: 600px;
-  position: absolute;
-  top: 0%;
-  left: 54%;
   z-index: -3;
+
+  @media screen and (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+  @media screen and (min-width: 768px) {
+    height: 100%;
+    width: 40%;
+    position: absolute;
+    top: 0%;
+    left: 60%;
+  }
 `;
 
 const TextButtonsContainer = styled.div`
@@ -40,9 +48,9 @@ const TextButtonsContainer = styled.div`
   grid-template-rows: 1fr 100px;
   row-gap: 100px;
   grid-template-areas:
-    "text . pic pic"
-    "buttons . pic pic"
-    ". . pic pic";
+    'text . pic pic'
+    'buttons . pic pic'
+    '. . pic pic';
 `;
 
 const ButtonsContainer = styled.div`

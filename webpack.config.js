@@ -22,6 +22,10 @@ module.exports = ({ mode, presets } = { mode: 'development', presets: [] }) => {
             use: ['babel-loader', 'eslint-loader'],
           },
           {
+            test: /\.css$/i, 
+            use : ["style-loader", "css-loader"]
+          },
+          {
             test: /\.jpe?g$/,
             use: [
               {
