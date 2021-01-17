@@ -1,5 +1,5 @@
-import { black, gold, green, neutral, red } from "./colors";
-import { primaryFont, bodyFont } from "./typography";
+import { black, gold, green, neutral, red } from './colors';
+import { primaryFont, bodyFont } from './typography';
 
 export const defaultTheme = {
   primaryColor: black[100],
