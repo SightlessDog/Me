@@ -19,7 +19,6 @@ function Trail({ open, children, ...props }) {
     left: 51%;
     top: 49%;
     overflow: hidden;
-    cursor: pointer;
     display: flex;
     justify-content: flex-start;
     align-items: center;

@@ -5,6 +5,7 @@ import { animated } from 'react-spring';
 import Trail from '../utils/Animations/trail';
 import { Icons } from '../assets';
 import useBoop from '../utils/Animations/LogoHover';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const Div = styled(animated.div).attrs({
   className:
@@ -25,17 +26,18 @@ const Logo = styled(animated.div).attrs({})`
   font-size: ${typeScale.header3};
 `;
 
-const ContinueContainer = styled.div.attrs({
+const ContinueContainer = styled(animated.div).attrs({
   className: 'flex items-center',
 })`
   position: absolute;
   top: 90%;
   left: 90%;
+  cursor: pointer;
 `;
 
-const ContinueLogo = styled.img`
+const ContinueLogo = styled(animated.img)`
   color: ${black[100]};
-  width: 10%;
+  width: 30px;
   height: 1%;
 `;
 
@@ -45,7 +47,9 @@ const ContinueDiv = styled.div`
   margin-right: 5%;
 `;
 
-const Welcome = () => {
+const Welcome = (props) => {
+  const [style, trigger] = useBoop({ x: 4 });
+
   return (
     <>
       <Div>
@@ -56,9 +60,19 @@ const Welcome = () => {
         </Trail>
         <Logo>Elyess</Logo>
       </Div>
-      <ContinueContainer>
-        <ContinueDiv>Continue</ContinueDiv>
+      <ContinueContainer
+        onMouseEnter={trigger}
+        onClick={() => {
+          !props.rederRest;
+        }}
+      >
+        <Router>
+          <Link to="/Home">
+            <ContinueDiv>Continue</ContinueDiv>
+          </Link>
+        </Router>
         <ContinueLogo
+          style={style}
           src={Icons.ContinueIcon}
           alt="continue logo"
         ></ContinueLogo>
