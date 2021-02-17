@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { defaultTheme, primaryFont, typeScale } from "../utils";
-import { animated } from "react-spring";
+import styled from 'styled-components';
+import { defaultTheme, primaryFont, typeScale } from '../utils';
+import { animated } from 'react-spring';
 
 const Button = styled(animated.button)`
   -moz-transition: all 0.4s ease-in;

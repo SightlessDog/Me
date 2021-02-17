@@ -1,37 +1,25 @@
-import React from "react";
-import { Link, BrowserRouter as Router } from "react-router-dom";
-import styled from "styled-components";
-import { Icons } from "../assets";
-import { primaryFont, typeScale } from "../utils";
+import React from 'react';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
+import styled from 'styled-components';
+import { Icons } from '../assets';
+import { primaryFont, typeScale } from '../utils';
 
-const Nav = styled.nav`
+const Nav = styled.nav.attrs({
+  className: 'flex justify-between mr-8 ml-8 mt-8 items-center',
+})`
   font-size: ${typeScale.paragraphText};
   padding-bottom: 10px;
-  @media screen and (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 0;
-    height: 70px;
-    align-items: center;
-    margin-left: 250px;
-    margin-right: 250px;
-    margin-top: 20px;
+`;
+
+const Ul = styled.ul.attrs({
+  className: 'list-none md:flex justify-end flex-row',
+})`
+  @media screen and (max-width: 768px) {
+    display: ${(props) => (props.showBar ? 'none' : 'block')};
   }
 `;
 
-const Ul = styled.ul`
-  list-style-type: none;
-  display: ${(props) => (props.showBar ? "none" : "block")};
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    margin-right: 30px;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-`;
-
-const A = styled(Link)`
+export const A = styled(Link)`
   -moz-transition: all 0.4s ease-in;
   -o-transition: all 0.4s ease-in;
   -webkit-transition: all 0.4s ease-in;
@@ -41,16 +29,11 @@ const A = styled(Link)`
   cursor: pointer;
 `;
 
-const Logo = styled(A)`
-  display: inline-block;
+const Logo = styled(A).attrs({
+  className: 'inline-block',
+})`
   font-family: ${primaryFont};
   font-size: ${typeScale.paragraphText};
-  margin-top: 10px;
-  margin-left: 20px;
-
-  @media screen and (min-width: 768px) {
-    margin-top: 0;
-  }
 `;
 
 const Li = styled.li`
@@ -60,25 +43,19 @@ const Li = styled.li`
 
   @media screen and (min-width: 768px) {
     margin: 0;
-
     &:hover {
       color: ${(props) => props.theme.primaryButtonColor};
     }
   }
 `;
 
-const Toggle = styled.span`
+const Toggle = styled.span.attrs({
+  className: 'sm:absolute cursor-pointer text-base md:hidden',
+})`
   font-family: ${primaryFont};
-  position: absolute;
   top: 10px;
   right: 20px;
-  cursor: pointer;
   color: ${(props) => props.theme.primaryButtonColor};
-  font-size: 24px;
-
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
 `;
 
 class NavBar extends React.Component {
@@ -86,7 +63,7 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       showBar: true,
-      menu: ["Home", "Gallery", "About", "Instagram"],
+      menu: ['Home', 'Gallery', 'About', 'Instagram'],
       hover: false,
     };
     this.handleShowBar = this.handleShowBar.bind(this);
@@ -123,7 +100,7 @@ class NavBar extends React.Component {
           <Logo>Elyess</Logo>
           <Ul showBar={this.state.showBar}>
             {this.state.menu.map((tag, key) =>
-              tag == "Instagram" ? (
+              tag == 'Instagram' ? (
                 <Li>
                   <A
                     id={key}
@@ -142,7 +119,7 @@ class NavBar extends React.Component {
                     onMouseOver={() => this.handleMouseOver({ key })}
                     onMouseLeave={() => this.handleMouseOver({ key })}
                     hoverState={this.state.hover}
-                    to={"/" + tag}
+                    to={'/' + tag}
                   >
                     {tag}
                   </A>

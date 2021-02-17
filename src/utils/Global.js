@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-import { normalize } from "polished";
+import { normalize } from 'polished';
 
 export const GlobalStyle = createGlobalStyle`
     ${normalize()}
