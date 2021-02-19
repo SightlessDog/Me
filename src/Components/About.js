@@ -2,25 +2,45 @@ import React from 'react';
 import styled from 'styled-components';
 import { bodyFont, typeScale } from '../utils';
 import Wrapper from './Wrapper';
-import NavBar from './NavBar';
+import { animated } from 'react-spring';
 import image from '../assets/pictures/myImage.jpg';
 import '../index.css';
+import Navigation from './Navigation';
+import MeTrail from '../utils/Animations/meTrail';
 
-const me =
-  'Hi I am Elyess, a frontend developer based in berlin. I am also an amateur documantary photographer who has come upon many different cultures.' +
-  "I was born in Bizerte, Tunisia (It's a wonderful place you should check it out) in 1999.";
-const experience =
-  'My first experiences with photography began in 2014 when I received a camera as gift, it was the famous Canon 400D.' +
-  'I started randomly shooting things until I discovered the profile a very inspiring person called Vivian Maier.' +
-  'What inspired me more is a very talented guy called Skander Khlif, he has a very wonderful portfolio' +
-  "And that's how I started with documantary photography." +
-  'I call it documentary because I try to document every aspect of our everyday life.';
+const MyPicture = styled(animated.img).attrs({})`
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -3;
 
-const Div = styled.div.attrs({})`
+  @media screen and (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+    /* position: absolute; */
+  }
+  @media screen and (min-width: 768px) {
+    height: 600px;
+    width: auto;
+    /* position: absolute;
+    top: 10%;
+    left: 20%; */
+  }
+`;
+
+const BiggestContainer = styled.div.attrs({
+  className: 'flex flex-col',
+})``;
+
+const FirstPicAndFirstText = styled.div.attrs({})``;
+
+const Div = styled.div.attrs({
+  className: 'absolute text-center w-80 -m-40',
+})`
   font-family: ${bodyFont};
   color: ${(props) => props.theme.bodyTextColor};
   font-size: ${typeScale.paragraphText};
-  text-align: center;
+  top: 50%;
+  left: 50%;
 `;
 
 const LignContainer = styled.div.attrs({
@@ -65,20 +85,41 @@ const Img = styled.img`
 
 const About = (props) => {
   return (
-    <Wrapper>
-      <NavBar theme={props.theme} />
-      <LignContainer>
-        <ColContainer>
-          <FirstTextContainer>
-            <Div style={{ gridArea: 'firText' }}>{me}</Div>
-          </FirstTextContainer>
-          <SectextContainer>
-            <Div style={{ gridArea: 'secText' }}>{experience}</Div>
-          </SectextContainer>
-        </ColContainer>
-        <Img src={image} />
-      </LignContainer>
-    </Wrapper>
+    <BiggestContainer>
+      <div>
+        <Navigation />
+        <MyPicture src={image} />
+        <MeTrail left={'50%'} top={'50%'}>
+          <span>Hi I am Elyess</span>
+          <span>
+            I am also an amateur documantary photographer who has come upon many
+            different cultures.
+          </span>
+          <span>
+            I was born in Bizerte, Tunisia in 1999. My first experiences with
+            photography began in 2014 when I received a camera as gift, it was
+            the famous Canon 400D.
+          </span>
+        </MeTrail>
+      </div>
+      <div>
+        <MeTrail left={'20%'} top={'50%'}>
+          <span>
+            I started randomly shooting things until I discovered the profile a
+            very inspiring person called Vivian Maier.
+          </span>
+          <span>
+            What inspired me more is a very talented guy called Skander Khlif,
+            he has a very wonderful portfolio and that's how I started with
+            documantary photography
+          </span>
+          <span>
+            I call it documentary because I try to document every aspect of our
+            everyday life.
+          </span>
+        </MeTrail>
+      </div>
+    </BiggestContainer>
   );
 };
 

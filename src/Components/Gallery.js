@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import NavBar from './NavBar';
+import Navigation from './Navigation';
 import Wrapper from './Wrapper';
 import '../index.css';
 import { A } from './NavBar';
@@ -40,7 +40,7 @@ const SecondContainer = styled.div.attrs({
 const Gallery = (props) => {
   return (
     <Wrapper>
-      <NavBar theme={props.theme} />
+      <Navigation />
       <LeftMenu>
         <A>Color</A>
         <A>Black and White</A>

@@ -11,10 +11,9 @@ const Button = styled(animated.button)`
   font-size: ${typeScale.paragraphText};
   border-radius: 6px;
   width: 150px;
-  cursor: pointer;
   font-family: ${primaryFont};
   transition: background-color 0.2 linear, color 0.2 linear;
-
+  cursor: none;
   &:hover {
     background-color: ${defaultTheme.primaryButtonColorOnHover};
     color: ${defaultTheme.textColorInverted};

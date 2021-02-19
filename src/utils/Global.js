@@ -18,10 +18,10 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing : border-box; 
         padding: 1px 5px;
         margin : 0;  
+        cursor: none;  
     }
 
     body {
-        
     }
 
     main {

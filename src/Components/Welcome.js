@@ -53,7 +53,7 @@ const Welcome = (props) => {
   return (
     <>
       <Div>
-        <Trail open={true}>
+        <Trail>
           <span>Documenting</span>
           <span>Life</span>
           <span>!</span>

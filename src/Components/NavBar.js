@@ -26,7 +26,10 @@ export const A = styled(Link)`
   transition: all 0.4s ease-in;
   text-decoration: none;
   color: ${(props) => props.theme.headersColor};
-  cursor: pointer;
+  cursor: none;
+  &:hover {
+    color: ${(props) => props.theme.primaryButtonColor};
+  }
 `;
 
 const Logo = styled(A).attrs({
@@ -43,19 +46,7 @@ const Li = styled.li`
 
   @media screen and (min-width: 768px) {
     margin: 0;
-    &:hover {
-      color: ${(props) => props.theme.primaryButtonColor};
-    }
   }
-`;
-
-const Toggle = styled.span.attrs({
-  className: 'sm:absolute cursor-pointer text-base md:hidden',
-})`
-  font-family: ${primaryFont};
-  top: 10px;
-  right: 20px;
-  color: ${(props) => props.theme.primaryButtonColor};
 `;
 
 class NavBar extends React.Component {
@@ -94,39 +85,33 @@ class NavBar extends React.Component {
     return (
       <Router>
         <Nav>
-          <Toggle onClick={this.handleShowBar}>
-            <img src={Icons.BarsIcon} />
-          </Toggle>
-          <Logo>Elyess</Logo>
-          <Ul showBar={this.state.showBar}>
-            {this.state.menu.map((tag, key) =>
-              tag == 'Instagram' ? (
-                <Li>
-                  <A
-                    id={key}
-                    onMouseOver={() => this.handleMouseOver({ key })}
-                    onMouseLeave={() => this.handleMouseOver({ key })}
-                    hoverState={this.state.hover}
-                    to="https://www.instagram.com/omega_is/"
-                  >
-                    {tag}
-                  </A>
-                </Li>
-              ) : (
-                <Li>
-                  <A
-                    id={key}
-                    onMouseOver={() => this.handleMouseOver({ key })}
-                    onMouseLeave={() => this.handleMouseOver({ key })}
-                    hoverState={this.state.hover}
-                    to={'/' + tag}
-                  >
-                    {tag}
-                  </A>
-                </Li>
-              )
-            )}
-          </Ul>
+          {this.state.menu.map((tag, key) =>
+            tag == 'Instagram' ? (
+              <Li>
+                <a
+                  id={key}
+                  onMouseOver={() => this.handleMouseOver({ key })}
+                  onMouseLeave={() => this.handleMouseOver({ key })}
+                  hoverState={this.state.hover}
+                  to="https://www.instagram.com/omega_is/"
+                >
+                  {tag}
+                </a>
+              </Li>
+            ) : (
+              <Li>
+                <A
+                  id={key}
+                  onMouseOver={() => this.handleMouseOver({ key })}
+                  onMouseLeave={() => this.handleMouseOver({ key })}
+                  hoverState={this.state.hover}
+                  to={'/' + tag}
+                >
+                  {tag}
+                </A>
+              </Li>
+            )
+          )}
         </Nav>
       </Router>
     );
