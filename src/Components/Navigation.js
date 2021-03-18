@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, {useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
-import { primaryFont, typeScale } from '../utils';
+import { Link} from 'react-router-dom';
+import {  typeScale } from '../utils';
 
 const Nav = styled(Link)`
   position: absolute;
@@ -15,6 +15,7 @@ const Nav = styled(Link)`
 
 const Navigation = (props) => {
   const [hover, setHover] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [menu, setMenu] = useState([
     { name: 'Home' },
     { name: 'About', top: '90%' },
@@ -40,8 +41,9 @@ const Navigation = (props) => {
   return (
     <>
       {menu.map((tag, key) => (
-        <ThemeProvider
+        <ThemeProvider key={key}
           theme={{
+            // eslint-disable-next-line react/prop-types
             ...props.theme,
             top: menu[key].top || 0,
             left: menu[key].left || 0,

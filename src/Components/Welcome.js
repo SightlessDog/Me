@@ -63,6 +63,7 @@ const Welcome = (props) => {
       <ContinueContainer
         onMouseEnter={trigger}
         onClick={() => {
+          // eslint-disable-next-line react/prop-types
           !props.rederRest;
         }}
       >

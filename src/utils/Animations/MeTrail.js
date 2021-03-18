@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { black } from '../colors';
 import { bodyFont, typeScale } from '../typography';
 
+// eslint-disable-next-line react/prop-types
 const MeTrail = ({ children, ...props }) => {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
@@ -16,7 +17,9 @@ const MeTrail = ({ children, ...props }) => {
 
   const Div = styled.div`
     position: relative;
+    // eslint-disable-next-line react/prop-types
     left: ${props.left};
+    // eslint-disable-next-line react/prop-types
     top: ${props.top};
     overflow: hidden;
     display: flex;
@@ -43,6 +46,7 @@ const MeTrail = ({ children, ...props }) => {
   return (
     <Div {...props}>
       <div>
+        {/* eslint-disable-next-line no-unused-vars */}
         {trail.map(({ x, height, ...rest }, index) => (
           <DivsContainer
             key={items[index]}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import styled from 'styled-components';
-import { Icons } from '../assets';
 import { primaryFont, typeScale } from '../utils';
 
 const Nav = styled.nav.attrs({
@@ -11,13 +10,13 @@ const Nav = styled.nav.attrs({
   padding-bottom: 10px;
 `;
 
-const Ul = styled.ul.attrs({
+/*const Ul = styled.ul.attrs({
   className: 'list-none md:flex justify-end flex-row',
 })`
   @media screen and (max-width: 768px) {
     display: ${(props) => (props.showBar ? 'none' : 'block')};
   }
-`;
+`;*/
 
 export const A = styled(Link)`
   -moz-transition: all 0.4s ease-in;
@@ -32,12 +31,12 @@ export const A = styled(Link)`
   }
 `;
 
-const Logo = styled(A).attrs({
+/*const Logo = styled(A).attrs({
   className: 'inline-block',
 })`
   font-family: ${primaryFont};
   font-size: ${typeScale.paragraphText};
-`;
+`;*/
 
 const Li = styled.li`
   font-family: ${primaryFont};
@@ -74,9 +73,11 @@ class NavBar extends React.Component {
       this.state.hover
         ? (document.getElementById(
             id
+        // eslint-disable-next-line react/prop-types
           ).style.color = this.props.theme.headersColor)
         : (document.getElementById(
             id
+        // eslint-disable-next-line react/prop-types
           ).style.color = this.props.theme.bodyTextColor);
     }
   }

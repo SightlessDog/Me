@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { bodyFont, typeScale } from '../utils';
 import { PrimaryButton, SecondaryButton } from './Buttons';
-import Wrapper from './Wrapper';
 import image from '../assets/pictures/myImage.jpg';
 import streetImage from '../assets/pictures/meLaughing.jpg';
 import { animated, useSpring, useTransition } from 'react-spring';
@@ -108,13 +107,16 @@ const HomePage = (props) => {
   });
 
   return (
-    <Wrapper>
+    <>
+      {/* eslint-disable-next-line no-unused-vars */}
       {ImageStyle.map(({ item, key, props }) => (
         <MyPicture src={image} key={key} style={props} />
       ))}
+      {/* eslint-disable-next-line no-unused-vars */}
       {SecondImageStyle.map(({ item, key, props }) => (
         <StreetPicture src={streetImage} key={key} style={props} />
       ))}
+      {/* eslint-disable-next-line react/prop-types */}
       <Navigation theme={props.theme} />
       <TextButtonsContainer>
         <BodyText style={StoryTellerStyle}>I am a visual</BodyText>
@@ -123,7 +125,7 @@ const HomePage = (props) => {
           <SecondaryButton>Instagram</SecondaryButton>
         </ButtonsContainer>
       </TextButtonsContainer>
-    </Wrapper>
+    </>
   );
 };
 

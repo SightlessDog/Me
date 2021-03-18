@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navigation from './Navigation';
-import Wrapper from './Wrapper';
 import '../index.css';
 import { A } from './NavBar';
 
@@ -25,6 +24,7 @@ const FirstImageContainer = styled.div.attrs({
 })`
   width: 50%;
 `;
+
 const SecondImageContainer = styled.div.attrs({
   className: 'bg-purple-600',
 })`
@@ -37,9 +37,9 @@ const SecondContainer = styled.div.attrs({
   height: 50rem;
 `;
 
-const Gallery = (props) => {
+const Gallery = () => {
   return (
-    <Wrapper>
+    <>
       <Navigation />
       <LeftMenu>
         <A>Color</A>
@@ -50,7 +50,7 @@ const Gallery = (props) => {
         <SecondImageContainer>Hello</SecondImageContainer>
       </FirstContainer>
       <SecondContainer />
-    </Wrapper>
+    </>
   );
 };
 

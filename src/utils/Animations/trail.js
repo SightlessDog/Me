@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { black } from '../colors';
 import { bodyFont, typeScale } from '../typography';
 
+// eslint-disable-next-line react/prop-types
 function Trail({ children, ...props }) {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
@@ -43,6 +44,7 @@ function Trail({ children, ...props }) {
   return (
     <Div {...props}>
       <div>
+        {/* eslint-disable-next-line no-unused-vars */}
         {trail.map(({ x, height, ...rest }, index) => (
           <DivsContainer
             key={items[index]}

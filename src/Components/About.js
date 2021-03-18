@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { bodyFont, typeScale } from '../utils';
-import Wrapper from './Wrapper';
 import { animated } from 'react-spring';
 import image from '../assets/pictures/myImage.jpg';
 import '../index.css';
@@ -31,59 +29,7 @@ const BiggestContainer = styled.div.attrs({
   className: 'flex flex-col',
 })``;
 
-const FirstPicAndFirstText = styled.div.attrs({})``;
-
-const Div = styled.div.attrs({
-  className: 'absolute text-center w-80 -m-40',
-})`
-  font-family: ${bodyFont};
-  color: ${(props) => props.theme.bodyTextColor};
-  font-size: ${typeScale.paragraphText};
-  top: 50%;
-  left: 50%;
-`;
-
-const LignContainer = styled.div.attrs({
-  className: 'ml-24 mr-8 mt-16',
-})`
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas:
-    'text pic'
-    'text2 pic'
-    '. pic';
-`;
-
-const ColContainer = styled.div.attrs({
-  className: 'w-full flex flex-col justify-between',
-})`
-  grid-area: text;
-`;
-
-const FirstTextContainer = styled.div`
-  grid-area: text;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 'firText .';
-`;
-
-const SectextContainer = styled.div`
-  grid-area: text2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas:
-    '. .'
-    '. secText';
-`;
-
-const Img = styled.img`
-  grid-area: pic;
-  width: 60%;
-`;
-
-const About = (props) => {
+const About = () => {
   return (
     <BiggestContainer>
       <div>
@@ -110,6 +56,7 @@ const About = (props) => {
           </span>
           <span>
             What inspired me more is a very talented guy called Skander Khlif,
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             he has a very wonderful portfolio and that's how I started with
             documantary photography
           </span>
