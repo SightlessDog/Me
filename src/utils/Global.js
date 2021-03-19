@@ -9,9 +9,9 @@ export const GlobalStyle = createGlobalStyle`
     -o-transition: all .4s ease-in;
     -webkit-transition: all .4s ease-in;
     transition: all .2s ease-in;
-        background-color : ${(props) => props.theme.primaryColor}; 
-        font-size : 16px; 
-        box-sizing : border-box; 
+    background-color : ${(props) => props.theme.primaryColor}; 
+    font-size : 16px; 
+    box-sizing : border-box; 
     }
 
     *, *:before, *:after {
@@ -19,9 +19,6 @@ export const GlobalStyle = createGlobalStyle`
         padding: 1px 5px;
         margin : 0;  
         cursor: none;  
-    }
-
-    body {
     }
 
     main {

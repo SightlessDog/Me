@@ -1,16 +1,28 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Link} from 'react-router-dom';
-import {  typeScale } from '../utils';
+import { Link } from 'react-router-dom';
+import { typeScale } from '../utils';
 
 const Nav = styled(Link)`
-  position: absolute;
   color: ${(props) => props.theme.headersColor};
   font-size: ${typeScale.header4};
   font-weight: bold;
   cursor: none;
-  left: ${(props) => props.theme.left};
-  top: ${(props) => props.theme.top};
+`;
+
+const NavContainer = styled.div`
+  position: fixed;
+  height: 95%;
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`;
+
+const AboutGalleryContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 `;
 
 const Navigation = (props) => {
@@ -18,8 +30,8 @@ const Navigation = (props) => {
   // eslint-disable-next-line no-unused-vars
   const [menu, setMenu] = useState([
     { name: 'Home' },
-    { name: 'About', top: '90%' },
-    { name: 'Gallery', top: '90%', left: '90%' },
+    { name: 'About' },
+    { name: 'Gallery' },
   ]);
   const handleMouseOver = (key) => {
     setHover(!hover);
@@ -27,7 +39,6 @@ const Navigation = (props) => {
     let otherState = menu.filter((menuItem) => menuItem != menu[key]);
     for (let i = 0; i < otherState.length; i++) {
       let id = menu.indexOf(otherState[i]);
-      console.log('id', id);
       hover
         ? (document.getElementById(
             id
@@ -40,53 +51,33 @@ const Navigation = (props) => {
 
   return (
     <>
-      {menu.map((tag, key) => (
-        <ThemeProvider key={key}
-          theme={{
-            // eslint-disable-next-line react/prop-types
-            ...props.theme,
-            top: menu[key].top || 0,
-            left: menu[key].left || 0,
-          }}
-        >
+      <ThemeProvider theme={{ ...props.theme }}>
+        <NavContainer>
           <Nav
-            onMouseOver={() => handleMouseOver(key)}
-            onMouseLeave={() => handleMouseOver(key)}
-            to={`/${menu[key].name}`}
-            id={menu[key].name}
-            key={menu[key].name}
+            onMouseOver={() => handleMouseOver({ key })}
+            onMouseLeave={() => handleMouseOver({ key })}
+            to="/Home"
           >
-            {menu[key].name}
+            Home
           </Nav>
-        </ThemeProvider>
-      ))}
-      {/* <ThemeProvider theme={{ ...props.theme }}>
-        <Nav
-          onMouseOver={() => handleMouseOver({ key })}
-          onMouseLeave={() => handleMouseOver({ key })}
-          to="/Home"
-        >
-          Home
-        </Nav>
+          <AboutGalleryContainer>
+            <Nav
+              onMouseOver={(e) => handleMouseOver(e)}
+              onMouseLeave={() => handleMouseOver({ key })}
+              to="/About"
+            >
+              About
+            </Nav>
+            <Nav
+              onMouseOver={() => handleMouseOver({ key })}
+              onMouseLeave={() => handleMouseOver({ key })}
+              to="/Gallery"
+            >
+              Gallery
+            </Nav>
+          </AboutGalleryContainer>
+        </NavContainer>
       </ThemeProvider>
-      <ThemeProvider theme={{ ...props.theme, top: '90%' }}>
-        <Nav
-          onMouseOver={(e) => handleMouseOver(e)}
-          onMouseLeave={() => handleMouseOver({ key })}
-          to="/About"
-        >
-          About
-        </Nav>
-      </ThemeProvider>
-      <ThemeProvider theme={{ ...props.theme, top: '90%', left: '90%' }}>
-        <Nav
-          onMouseOver={() => handleMouseOver({ key })}
-          onMouseLeave={() => handleMouseOver({ key })}
-          to="/Gallery"
-        >
-          Gallery
-        </Nav>
-      </ThemeProvider> */}
     </>
   );
 };

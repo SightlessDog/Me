@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Welcome from './Components/Welcome';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -28,7 +28,7 @@ const App = () => {
           <Route exact path="/Home">
             <HomePage theme={theme} />
           </Route>
-          <Route exact path="/">
+          <Route path="/">
             <Welcome />
           </Route>
           <button onClick={() => setUseDarkTheme(!useDarkTheme)}>
