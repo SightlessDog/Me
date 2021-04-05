@@ -9,19 +9,16 @@ export const GlobalStyle = createGlobalStyle`
     -o-transition: all .4s ease-in;
     -webkit-transition: all .4s ease-in;
     transition: all .2s ease-in;
-        background-color : ${(props) => props.theme.primaryColor}; 
-        font-size : 16px; 
-        box-sizing : border-box; 
+    background-color : ${(props) => props.theme.primaryColor}; 
+    font-size : 16px; 
+    box-sizing : border-box; 
     }
 
     *, *:before, *:after {
         box-sizing : border-box; 
         padding: 1px 5px;
         margin : 0;  
-    }
-
-    body {
-        
+        cursor: none;  
     }
 
     main {

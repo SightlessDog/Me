@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import styled from 'styled-components';
-import { Icons } from '../assets';
 import { primaryFont, typeScale } from '../utils';
 
 const Nav = styled.nav.attrs({
@@ -11,13 +10,13 @@ const Nav = styled.nav.attrs({
   padding-bottom: 10px;
 `;
 
-const Ul = styled.ul.attrs({
+/*const Ul = styled.ul.attrs({
   className: 'list-none md:flex justify-end flex-row',
 })`
   @media screen and (max-width: 768px) {
     display: ${(props) => (props.showBar ? 'none' : 'block')};
   }
-`;
+`;*/
 
 export const A = styled(Link)`
   -moz-transition: all 0.4s ease-in;
@@ -26,15 +25,18 @@ export const A = styled(Link)`
   transition: all 0.4s ease-in;
   text-decoration: none;
   color: ${(props) => props.theme.headersColor};
-  cursor: pointer;
+  cursor: none;
+  &:hover {
+    color: ${(props) => props.theme.primaryButtonColor};
+  }
 `;
 
-const Logo = styled(A).attrs({
+/*const Logo = styled(A).attrs({
   className: 'inline-block',
 })`
   font-family: ${primaryFont};
   font-size: ${typeScale.paragraphText};
-`;
+`;*/
 
 const Li = styled.li`
   font-family: ${primaryFont};
@@ -43,19 +45,7 @@ const Li = styled.li`
 
   @media screen and (min-width: 768px) {
     margin: 0;
-    &:hover {
-      color: ${(props) => props.theme.primaryButtonColor};
-    }
   }
-`;
-
-const Toggle = styled.span.attrs({
-  className: 'sm:absolute cursor-pointer text-base md:hidden',
-})`
-  font-family: ${primaryFont};
-  top: 10px;
-  right: 20px;
-  color: ${(props) => props.theme.primaryButtonColor};
 `;
 
 class NavBar extends React.Component {
@@ -83,9 +73,11 @@ class NavBar extends React.Component {
       this.state.hover
         ? (document.getElementById(
             id
+        // eslint-disable-next-line react/prop-types
           ).style.color = this.props.theme.headersColor)
         : (document.getElementById(
             id
+        // eslint-disable-next-line react/prop-types
           ).style.color = this.props.theme.bodyTextColor);
     }
   }
@@ -94,39 +86,33 @@ class NavBar extends React.Component {
     return (
       <Router>
         <Nav>
-          <Toggle onClick={this.handleShowBar}>
-            <img src={Icons.BarsIcon} />
-          </Toggle>
-          <Logo>Elyess</Logo>
-          <Ul showBar={this.state.showBar}>
-            {this.state.menu.map((tag, key) =>
-              tag == 'Instagram' ? (
-                <Li>
-                  <A
-                    id={key}
-                    onMouseOver={() => this.handleMouseOver({ key })}
-                    onMouseLeave={() => this.handleMouseOver({ key })}
-                    hoverState={this.state.hover}
-                    to="https://www.instagram.com/omega_is/"
-                  >
-                    {tag}
-                  </A>
-                </Li>
-              ) : (
-                <Li>
-                  <A
-                    id={key}
-                    onMouseOver={() => this.handleMouseOver({ key })}
-                    onMouseLeave={() => this.handleMouseOver({ key })}
-                    hoverState={this.state.hover}
-                    to={'/' + tag}
-                  >
-                    {tag}
-                  </A>
-                </Li>
-              )
-            )}
-          </Ul>
+          {this.state.menu.map((tag, key) =>
+            tag == 'Instagram' ? (
+              <Li>
+                <a
+                  id={key}
+                  onMouseOver={() => this.handleMouseOver({ key })}
+                  onMouseLeave={() => this.handleMouseOver({ key })}
+                  hoverState={this.state.hover}
+                  to="https://www.instagram.com/omega_is/"
+                >
+                  {tag}
+                </a>
+              </Li>
+            ) : (
+              <Li>
+                <A
+                  id={key}
+                  onMouseOver={() => this.handleMouseOver({ key })}
+                  onMouseLeave={() => this.handleMouseOver({ key })}
+                  hoverState={this.state.hover}
+                  to={'/' + tag}
+                >
+                  {tag}
+                </A>
+              </Li>
+            )
+          )}
         </Nav>
       </Router>
     );

@@ -5,20 +5,22 @@ import { black } from '../colors';
 import { bodyFont, typeScale } from '../typography';
 
 // eslint-disable-next-line react/prop-types
-function Trail({ children, ...props }) {
+const MeTrail = ({ children, ...props }) => {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
-    config: { mass: 100, tension: 1000, friction: 200 },
+    config: { mass: 100, tension: 1000, friction: 200, duration: 2500 },
     opacity: 1,
     x: 0,
-    height: 20,
+    height: 40,
     from: { opacity: 0, x: 0, height: 0 },
   });
 
   const Div = styled.div`
-    position: absolute;
-    left: 51%;
-    top: 49%;
+    position: relative;
+    // eslint-disable-next-line react/prop-types
+    left: ${props.left};
+    // eslint-disable-next-line react/prop-types
+    top: ${props.top};
     overflow: hidden;
     display: flex;
     justify-content: flex-start;
@@ -59,6 +61,6 @@ function Trail({ children, ...props }) {
       </div>
     </Div>
   );
-}
+};
 
-export default Trail;
+export default MeTrail;

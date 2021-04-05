@@ -53,7 +53,7 @@ const Welcome = (props) => {
   return (
     <>
       <Div>
-        <Trail open={true}>
+        <Trail>
           <span>Documenting</span>
           <span>Life</span>
           <span>!</span>
@@ -63,6 +63,7 @@ const Welcome = (props) => {
       <ContinueContainer
         onMouseEnter={trigger}
         onClick={() => {
+          // eslint-disable-next-line react/prop-types
           !props.rederRest;
         }}
       >

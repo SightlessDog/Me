@@ -23,7 +23,7 @@ function useBoop({
          scale(${scale})`
       : `translate(0px, 0px)
          rotate(0deg)
-         scale(1)`,
+         scale(${scale})`,
     config: springConfig,
   });
   React.useEffect(() => {
