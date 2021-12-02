@@ -5,7 +5,7 @@ import { animated } from 'react-spring';
 import Trail from '../utils/Animations/trail';
 import { Icons } from '../assets';
 import useBoop from '../utils/Animations/LogoHover';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, NavLink } from 'react-router-dom';
 
 const Div = styled(animated.div).attrs({
   className:
@@ -67,11 +67,9 @@ const Welcome = (props) => {
           !props.rederRest;
         }}
       >
-        <Router>
-          <Link to="/Home">
-            <ContinueDiv>Continue</ContinueDiv>
-          </Link>
-        </Router>
+        <NavLink to="/Home">
+          <ContinueDiv>Continue</ContinueDiv>
+        </NavLink>
         <ContinueLogo
           style={style}
           src={Icons.ContinueIcon}

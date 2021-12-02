@@ -1,84 +1,50 @@
-import React, { useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { typeScale } from '../utils';
+import { InstagramIcon } from '../assets/icons';
 
 const Nav = styled(Link)`
-  color: ${(props) => props.theme.headersColor};
-  font-size: ${typeScale.header4};
+  color: ${(props) => props.theme.bodyTextColor};
+  font-size: ${typeScale.header5};
   font-weight: bold;
+  font-family: ${(props) => props.theme.bodyFont};
   cursor: none;
 `;
 
-const NavContainer = styled.div`
-  position: fixed;
-  height: 95%;
-  width: 98%;
+const Flex = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
+  gap: 23px;
 `;
 
-const AboutGalleryContainer = styled.div`
+const NavContainer = styled.div`
+  width: 100%;
+  padding: 10px 10%;
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
 `;
 
-const Navigation = (props) => {
-  const [hover, setHover] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [menu, setMenu] = useState([
-    { name: 'Home' },
-    { name: 'About' },
-    { name: 'Gallery' },
-  ]);
-  const handleMouseOver = (key) => {
-    setHover(!hover);
-    console.log(key);
-    let otherState = menu.filter((menuItem) => menuItem != menu[key]);
-    for (let i = 0; i < otherState.length; i++) {
-      let id = menu.indexOf(otherState[i]);
-      hover
-        ? (document.getElementById(
-            id
-          ).style.color = this.props.theme.headersColor)
-        : (document.getElementById(
-            id
-          ).style.color = this.props.theme.bodyTextColor);
-    }
-  };
+const Logo = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-family: ${(p) => p.theme.bodyFont};
+  color: ${(p) => p.theme.headersColor};
+`;
 
+const Navigation = () => {
   return (
-    <>
-      <ThemeProvider theme={{ ...props.theme }}>
-        <NavContainer>
-          <Nav
-            onMouseOver={() => handleMouseOver({ key })}
-            onMouseLeave={() => handleMouseOver({ key })}
-            to="/Home"
-          >
-            Home
-          </Nav>
-          <AboutGalleryContainer>
-            <Nav
-              onMouseOver={(e) => handleMouseOver(e)}
-              onMouseLeave={() => handleMouseOver({ key })}
-              to="/About"
-            >
-              About
-            </Nav>
-            <Nav
-              onMouseOver={() => handleMouseOver({ key })}
-              onMouseLeave={() => handleMouseOver({ key })}
-              to="/Gallery"
-            >
-              Gallery
-            </Nav>
-          </AboutGalleryContainer>
-        </NavContainer>
-      </ThemeProvider>
-    </>
+    <NavContainer>
+      <InstagramIcon fillColor="white" height="35px" width="25px" />
+      <Logo>
+        <div>Elyess</div>
+        <div>Eleuch</div>
+      </Logo>
+      <Flex>
+        <Nav to="/about">About</Nav>
+        <Nav to="/Gallery">Photos</Nav>
+      </Flex>
+    </NavContainer>
   );
 };
 

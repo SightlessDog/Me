@@ -86,7 +86,7 @@ const Cursor = () => {
         cursorHovered: hovered,
       }}
     >
-      <Curs style={{ left: `${position.x}px`, top: `${position.y}px` }} />;
+      <Curs style={{ left: `${position.x}px`, top: `${position.y}px` }} />
     </ThemeProvider>
   );
 };

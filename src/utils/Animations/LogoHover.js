@@ -1,8 +1,6 @@
 import React from 'react';
 import { useSpring } from 'react-spring';
-// UPDATE this path to your copy of the hook!
-// Source here: https://joshwcomeau.com/snippets/react-hooks/use-prefers-reduced-motion
-//import usePrefersReducedMotion from './animation-hook/use-prefers-reduced-motion.hook';
+
 function useBoop({
   x = 0,
   y = 0,

@@ -9,20 +9,19 @@ export const GlobalStyle = createGlobalStyle`
     -o-transition: all .4s ease-in;
     -webkit-transition: all .4s ease-in;
     transition: all .2s ease-in;
-    background-color : ${(props) => props.theme.primaryColor}; 
+    background-color : black; 
     font-size : 16px; 
     box-sizing : border-box; 
+    height: 100%;
     }
 
     *, *:before, *:after {
-        box-sizing : border-box; 
-        padding: 1px 5px;
-        margin : 0;  
-        cursor: none;  
+        
     }
 
-    main {
-        width : 90%; 
-        margin: 0 auto; 
+    body {
+        cursor: none;  
+        overflow: hidden;
+        height: 100%;
     }
 `;
