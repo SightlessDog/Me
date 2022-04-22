@@ -1,16 +1,17 @@
 import React from 'react';
-import { useTrail, a, animated } from 'react-spring';
+import { useTrail, animated } from 'react-spring';
 import styled from 'styled-components';
 import { black } from '../colors';
 import { bodyFont, typeScale } from '../typography';
 
-function Trail({ open, children, ...props }) {
+// eslint-disable-next-line react/prop-types
+function Trail({ children, ...props }) {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
     config: { mass: 100, tension: 1000, friction: 200 },
-    opacity: open ? 1 : 0,
-    x: open ? 0 : 20,
-    height: open ? 20 : 0,
+    opacity: 1,
+    x: 0,
+    height: 20,
     from: { opacity: 0, x: 0, height: 0 },
   });
 
@@ -43,6 +44,7 @@ function Trail({ open, children, ...props }) {
   return (
     <Div {...props}>
       <div>
+        {/* eslint-disable-next-line no-unused-vars */}
         {trail.map(({ x, height, ...rest }, index) => (
           <DivsContainer
             key={items[index]}

@@ -1,84 +1,118 @@
 import React from 'react';
 import styled from 'styled-components';
-import { bodyFont, typeScale } from '../utils';
-import Wrapper from './Wrapper';
-import NavBar from './NavBar';
+import { animated } from 'react-spring';
 import image from '../assets/pictures/myImage.jpg';
 import '../index.css';
+import Navigation from './Navigation';
+import { black, bodyFont, typeScale } from '../utils';
 
-const me =
-  'Hi I am Elyess, a frontend developer based in berlin. I am also an amateur documantary photographer who has come upon many different cultures.' +
-  "I was born in Bizerte, Tunisia (It's a wonderful place you should check it out) in 1999.";
-const experience =
-  'My first experiences with photography began in 2014 when I received a camera as gift, it was the famous Canon 400D.' +
-  'I started randomly shooting things until I discovered the profile a very inspiring person called Vivian Maier.' +
-  'What inspired me more is a very talented guy called Skander Khlif, he has a very wonderful portfolio' +
-  "And that's how I started with documantary photography." +
-  'I call it documentary because I try to document every aspect of our everyday life.';
+const MyPicture = styled(animated.img).attrs({})`
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 600px;
+`;
 
-const Div = styled.div.attrs({})`
+const MyPictureContainer = styled(animated.div)`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InsidePictureContainer = styled.div`
+  margin-top: -2%;
+  margin-left: 10%;
+  z-index: -1;
+`;
+
+const MyTextContainer = styled(animated.div)`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TheActualText = styled.div`
+  margin: 1% 20%;
+  color: ${black[100]};
   font-family: ${bodyFont};
-  color: ${(props) => props.theme.bodyTextColor};
-  font-size: ${typeScale.paragraphText};
-  text-align: center;
+  font-size: ${typeScale.header5};
+  letter-spacing: -1px;
+  line-height: 98%;
+  width: 45%;
 `;
 
-const LignContainer = styled.div.attrs({
-  className: 'ml-24 mr-8 mt-16',
-})`
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas:
-    'text pic'
-    'text2 pic'
-    '. pic';
+const WhatUp = styled.div`
+  color: ${black[100]};
+  font-family: ${bodyFont};
+  font-size: ${typeScale.header2};
 `;
 
-const ColContainer = styled.div.attrs({
-  className: 'w-full flex flex-col justify-between',
-})`
-  grid-area: text;
+const FinalThoughtsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
 `;
 
-const FirstTextContainer = styled.div`
-  grid-area: text;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 'firText .';
+const InsideFinalThoughtsContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 `;
 
-const SectextContainer = styled.div`
-  grid-area: text2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas:
-    '. .'
-    '. secText';
-`;
-
-const Img = styled.img`
-  grid-area: pic;
-  width: 60%;
-`;
-
-const About = (props) => {
+const About = () => {
   return (
-    <Wrapper>
-      <NavBar theme={props.theme} />
-      <LignContainer>
-        <ColContainer>
-          <FirstTextContainer>
-            <Div style={{ gridArea: 'firText' }}>{me}</Div>
-          </FirstTextContainer>
-          <SectextContainer>
-            <Div style={{ gridArea: 'secText' }}>{experience}</Div>
-          </SectextContainer>
-        </ColContainer>
-        <Img src={image} />
-      </LignContainer>
-    </Wrapper>
+    <>
+      <MyPictureContainer>
+        <WhatUp>Hey What up</WhatUp>
+        <InsidePictureContainer>
+          <MyPicture src={image} />
+          <WhatUp>Want to chit chat?</WhatUp>
+        </InsidePictureContainer>
+      </MyPictureContainer>
+      <MyTextContainer>
+        <TheActualText>
+          I am Elyess, an amateur documantary photographer who has come upon
+          many different cultures.
+        </TheActualText>
+        <TheActualText>
+          I was born in Bizerte, Tunisia in 1999. My first experiences with
+          photography began in 2014 when I received a camera as gift, it was the
+          famous Canon 400D.
+        </TheActualText>
+        <TheActualText>
+          I started randomly shooting things until I discovered the profile a
+          very inspiring person called Vivian Maier.
+        </TheActualText>
+        <TheActualText>
+          What inspired me more is a very talented guy called Skander Khlif,
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          he has a very wonderful portfolio and that's how I started with
+          documantary photography
+        </TheActualText>
+        <TheActualText>
+          I call it documentary because I try to document every aspect of our
+          everyday life.
+        </TheActualText>
+      </MyTextContainer>
+      <FinalThoughtsContainer>
+        <TheActualText>
+          I am Elyess, an amateur documantary photographer who has come upon
+          many different cultures.
+        </TheActualText>
+        <InsideFinalThoughtsContainer>
+          <TheActualText>
+            I was born in Bizerte, Tunisia in 1999. My first experiences with
+            photography began in 2014 when I received a camera as gift, it was
+            the famous Canon 400D.
+          </TheActualText>
+        </InsideFinalThoughtsContainer>
+      </FinalThoughtsContainer>
+    </>
   );
 };
 

@@ -8,32 +8,45 @@ import Gallery from './Components/Gallery';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, defaultTheme, GlobalStyle } from './utils';
 import './index.css';
+import Cursor from './utils/Cursor';
+import Navigation from './Components/Navigation';
+import styled from 'styled-components';
+
+const Grid = styled.div`
+  display: fLex;
+  flex-direction: column;
+`;
 
 const App = () => {
-  const [renderRest, setRenderRest] = useState(false);
-  const [useDarkTheme, setUseDarkTheme] = useState(true);
+  const [useDarkTheme, setUseDarkTheme] = useState(false);
   let theme = useDarkTheme ? darkTheme : defaultTheme;
-
   return (
     <BrowserRouter>
+      <Cursor />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Switch>
           <Route exact path="/About">
-            <About theme={theme} />
+            <Grid>
+              <Navigation theme={theme} />
+              <About theme={theme} />
+            </Grid>
           </Route>
           <Route exact path="/Gallery">
-            <Gallery theme={theme} />
+            <Grid>
+              <Navigation theme={theme} />
+              <Gallery theme={theme} />
+            </Grid>
           </Route>
           <Route exact path="/Home">
-            <HomePage theme={theme} />
+            <Grid>
+              <Navigation theme={theme} />
+              <HomePage theme={theme} />
+            </Grid>
           </Route>
-          <Route exact path="/">
+          <Route path="/">
             <Welcome />
           </Route>
-          <button onClick={() => setUseDarkTheme(!useDarkTheme)}>
-            Use darkTheme
-          </button>
         </Switch>
       </ThemeProvider>
     </BrowserRouter>

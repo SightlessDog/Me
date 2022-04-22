@@ -1,56 +1,79 @@
 import React from 'react';
 import styled from 'styled-components';
-import NavBar from './NavBar';
-import Wrapper from './Wrapper';
 import '../index.css';
-import { A } from './NavBar';
+import image from '../assets/pictures/nature.jpg';
+import { typeScale } from '../utils';
+import useFirestore from '../utils/hooks/useFirestore';
+import { collection, query, getDocs} from 'firebase/firestore'
+import { projectFirestore } from '../firebase/config';
 
-const LeftMenu = styled.nav.attrs({
-  className: 'absolute flex flex-col justify-start h-96 ml-8 mt-8 space-y-6',
-})`
-  height: 100%;
-  width: 25%;
+
+const Grid = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  padding: 10px 10%;
 `;
 
-const FirstContainer = styled.span.attrs({
-  className: 'flex flex-row flex-wrap justify-end mr-8 mt-8',
-})`
-  width: auto;
-  padding-left: 25%;
-  height: 40rem;
+const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
 `;
 
-const FirstImageContainer = styled.div.attrs({
-  className: 'bg-blue-600',
-})`
-  width: 50%;
-`;
-const SecondImageContainer = styled.div.attrs({
-  className: 'bg-purple-600',
-})`
-  width: 50%;
+const ImageFlex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const SecondContainer = styled.div.attrs({
-  className: 'bg-green-600 ml-8 mr-8',
-})`
-  height: 50rem;
+const Image = styled.img``;
+
+const Text = styled.div`
+  color: ${(props) => props.theme.bodyTextColor};
+  font-size: ${typeScale.header3};
+  font-family: ${(props) => props.theme.bodyFont};
+  font-weight: bold;
+  cursor: none;
+  letter-spacing: 0.085em;
 `;
 
-const Gallery = (props) => {
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  position: relative;
+  overflow: auto;
+`;
+
+const Gallery = () => {
+  let [snaps, setSnaps] = React.useState([]);
+  let bla = []
+  const unsub = query(collection(projectFirestore, 'color'))
+
+  React.useEffect(() => {
+    getDocuments()
+  }, [snaps])
+
+  const getDocuments = async () => {
+    const querySnapshot = await getDocs(unsub);
+    querySnapshot.forEach(snap => bla.push(snap.data()));
+    setSnaps(bla);
+  }
+
   return (
-    <Wrapper>
-      <NavBar theme={props.theme} />
-      <LeftMenu>
-        <A>Color</A>
-        <A>Black and White</A>
-      </LeftMenu>
-      <FirstContainer>
-        <FirstImageContainer>hello</FirstImageContainer>
-        <SecondImageContainer>Hello</SecondImageContainer>
-      </FirstContainer>
-      <SecondContainer />
-    </Wrapper>
+    <Grid>
+      <Flex>
+        <Text>Black and White</Text>
+        <Text>Color</Text>
+      </Flex>
+      <Container>
+        {snaps.map((doc, i) => 
+          <ImageFlex key={i}><Image src={doc.url}/></ImageFlex>
+          )
+        }
+      </Container>
+    </Grid>
   );
 };
 
