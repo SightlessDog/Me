@@ -1,23 +1,23 @@
 import * as React from 'react';
+import { collection, query, getDocs} from 'firebase/firestore'
 
 import { projectFirestore } from '../../firebase/config';
 
-const useFirestore = (collection) => {
-  const [docs, setDocs] = React.useState([]);
 
-  React.useEffect(() => {
-    const unsub = projectFirestore.collection(collection).onSnapshot((snap) => {
-      let documents = [];
-      snap.forEach((doc) => {
-        documents.push({ ...doc.data(), id: doc.id });
-      });
-      setDocs(documents);
-    });
+const useFirestore = (col) => {
+  let snaps = [];
 
-    return () => unsub();
+  React.useEffect(async () => {
+    const unsub = query(collection(projectFirestore, col))
+
+    const querySnapshot = await getDocs(unsub);
+
+    querySnapshot.forEach(doc => snaps.push(doc.data()))
+
+    return () => querySnapshot();
   }, [collection]);
 
-  return { docs };
+  return { snaps };
 };
 
 export default useFirestore;

@@ -4,6 +4,9 @@ import '../index.css';
 import image from '../assets/pictures/nature.jpg';
 import { typeScale } from '../utils';
 import useFirestore from '../utils/hooks/useFirestore';
+import { collection, query, getDocs} from 'firebase/firestore'
+import { projectFirestore } from '../firebase/config';
+
 
 const Grid = styled.div`
   height: 100vh;
@@ -44,9 +47,19 @@ const Container = styled.div`
 `;
 
 const Gallery = () => {
-  const { docs } = useFirestore('color');
+  let [snaps, setSnaps] = React.useState([]);
+  let bla = []
+  const unsub = query(collection(projectFirestore, 'color'))
 
-  console.log(docs);
+  React.useEffect(() => {
+    getDocuments()
+  }, [snaps])
+
+  const getDocuments = async () => {
+    const querySnapshot = await getDocs(unsub);
+    querySnapshot.forEach(snap => bla.push(snap.data()));
+    setSnaps(bla);
+  }
 
   return (
     <Grid>
@@ -55,12 +68,10 @@ const Gallery = () => {
         <Text>Color</Text>
       </Flex>
       <Container>
-        <ImageFlex>
-          <Image src={image} />
-        </ImageFlex>
-        <ImageFlex>
-          <Image src={image} />
-        </ImageFlex>
+        {snaps.map((doc, i) => 
+          <ImageFlex key={i}><Image src={doc.url}/></ImageFlex>
+          )
+        }
       </Container>
     </Grid>
   );
