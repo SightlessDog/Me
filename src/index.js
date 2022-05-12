@@ -38,6 +38,11 @@ const App = () => {
               <Gallery theme={theme} />
             </Grid>
           </Route>
+          <Route exact path="/Gallery/:cat">
+            <Grid>
+              <Navigation theme={theme} />
+            </Grid>
+          </Route>
           <Route exact path="/Home">
             <Grid>
               <Navigation theme={theme} />
